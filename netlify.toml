@@ -1,14 +1,17 @@
+[build]
+  command = "npm run build"
+  publish = "public"
+
 # Config for the Netlify Build Plugin: netlify-plugin-fetch-feeds
 [[plugins]]
   package = "netlify-plugin-fetch-feeds"
- 
+
   [plugins.inputs]
     # Where should data files reside
     dataDir = "src/_data"
- 
+
     # All the feeds we wish to gather for use in the build
- 
     [[plugins.inputs.feeds]]
       name = "issues"
       url = "https://api.github.com/repos/NTIG-Umea/crispy-octo-barnacle/issues"
-      ttl = 3600
+      ttl = 120   # Cache for 2 minutes
