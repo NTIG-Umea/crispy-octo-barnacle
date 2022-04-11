@@ -1,10 +1,13 @@
-module.exports = function (eleventyConfig) {
-  eleventyConfig.addWatchTarget("./src/sass/");
+const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
 
-  return {
-    dir: {
-      input: "src",
-      output: "public",
-    },
-  };
+module.exports = function (eleventyConfig) {
+    eleventyConfig.addWatchTarget('./src/sass/');
+
+
+    return {
+        dir: {
+            input: 'src',
+            output: 'public',
+        },
+    };
 };

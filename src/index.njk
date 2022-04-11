@@ -1,5 +1,38 @@
 ---
 layout: base.njk
-title: Hello World
+title: Issues för detta repo
 ---
 
+<div class="issues">
+{% for issue in issues %}
+    <h2>{{ issue.title }}</h2>
+    <p>{{ issue.body }}</p>
+    <p>{{ issue.assignee }}</p>
+    <p>{{ issue.state }}</p>
+    <p>{{ issue.labels }}</p>
+{% endfor %}
+</div>
+
+<button>Update issues</button>
+
+<script>
+    const button = document.querySelector('button');
+    const issues = document.querySelector('.issues');
+
+    button.addEventListener('click', () => {
+        fetch('https://api.github.com/repos/NTIG-Umea/crispy-octo-barnacle/issues')
+            .then(response => response.json())
+            .then(data => {
+                issues.innerHTML = '';
+                data.forEach(issue => {
+                    issues.innerHTML += `
+                        <h2>${issue.title}</h2>
+                        <p>${issue.body}</p>
+                        <p>${issue.assignee}</p>
+                        <p>${issue.state}</p>
+                        <p>${issue.labels}</p>
+                    `;
+                });
+            });
+    });
+</script>
